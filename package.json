@@ -1,0 +1,19 @@
+{
+  "name": "mapr-streams-c",
+  "version": "1.0.0",
+  "description": "Sanity to check if primitive wrappers can be built for mapr-streams and mapr-librdkafka with node",
+  "main": "index.js",
+  "scripts": {
+    "start": "node-gyp configure build && node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shayan Sinha",
+  "license": "ISC",
+  "dependencies": {
+    "nan": "^2.10.0",
+    "node-addon-api": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=8.4.0"
+  }
+}
