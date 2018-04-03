@@ -1,4 +1,8 @@
-Prereq:
+# Node Client for MapR Streams
+
+A simple node-js client for MapR Streams using librdkafka C API
+
+Pre-req:
 ---------
 
 node v9.10.0<br>
@@ -6,11 +10,11 @@ mapr-client v6.0.1<br>
 
 Run:<br>
 -----------
-export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/opt/mapr/lib
-node-gyp clean<br>
-node-gyp configure<br>
-node-gyp build<br>
-node index.js
+
+    export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/opt/mapr/lib
+    npm install
+    npm run build
+    ./bin/test-run
 
 Example Output:<br>
 --------------
