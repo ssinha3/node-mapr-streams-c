@@ -130,6 +130,7 @@ static void cleanup_producer() {
     rd_kafka_destroy(prod_handle);
 }
 
+// librd kafka api call
 static void produce(const char* topic, int partition, const char* key, const char* value) {
 
     int totalTopics = 1;
@@ -259,7 +260,9 @@ napi_value ProduceFunction(napi_env env, napi_callback_info info) {
 
   //printf("topic = %s partition = %d key = %s value = %s\n",full_topic_name, partition_num, key, value);
 
+  // mapr specific rdkafka call
   init_producer();
+
   produce(full_topic_name, partition_num, key, value);
   num_msgs++;
   cleanup_producer();
@@ -310,26 +313,26 @@ napi_value ConsumeFunction(napi_env env, napi_callback_info info) {
 
 napi_value Init(napi_env env, napi_value exports) {
   napi_status status;
-  napi_value fn;
-  napi_value fn1;
+  napi_value produceFunction;
+  napi_value consumerFunction;
 
-  status = napi_create_function(env, NULL, 0, ProduceFunction, NULL, &fn);
+  status = napi_create_function(env, NULL, 0, ProduceFunction, NULL, &produceFunction);
   if (status != napi_ok) {
     napi_throw_error(env, NULL, "Unable to wrap native function");
   }
 
-  status = napi_set_named_property(env, exports, "produce", fn);
+  status = napi_set_named_property(env, exports, "produce", produceFunction);
   if (status != napi_ok) {
     napi_throw_error(env, NULL, "Unable to populate exports");
   }
 
 
-  status = napi_create_function(env, NULL, 0, ConsumeFunction, NULL, &fn1);
+  status = napi_create_function(env, NULL, 0, ConsumeFunction, NULL, &consumerFunction);
   if (status != napi_ok) {
     napi_throw_error(env, NULL, "Unable to wrap native function");
   }
 
-  status = napi_set_named_property(env, exports, "consume", fn1);
+  status = napi_set_named_property(env, exports, "consume", consumerFunction);
   if (status != napi_ok) {
     napi_throw_error(env, NULL, "Unable to populate exports");
   }
