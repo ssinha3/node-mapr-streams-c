@@ -14,7 +14,13 @@ Run:<br>
     export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/opt/mapr/lib
     npm install
     npm run build
-    ./bin/test-run
+    ./bin/testRun
+    ./bin/testRunTs
+
+### API
+
+* StreamsProducer.produce()
+* StreamsConsumer.consume()
 
 Example Output:<br>
 --------------

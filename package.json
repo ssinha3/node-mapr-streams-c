@@ -4,14 +4,19 @@
   "description": "Node client for mapr-streams with mapr-librdkafka",
   "main": "index.js",
   "scripts": {
-    "build": "node-gyp configure build",
+    "buildNative": "node-gyp configure build",
+    "buildTs": "rm -rf dist && tsc",
+    "build": "node-gyp configure build && rm -rf dist && tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Shayan Sinha",
   "license": "ISC",
   "dependencies": {
     "nan": "^2.10.0",
-    "node-addon-api": "^1.2.0"
+    "node-addon-api": "^1.2.0",
+    "source-map-support": "^0.5.4",
+    "ts-node": "^5.0.1",
+    "typescript": "^2.8.1"
   },
   "engines": {
     "node": ">=8.4.0"
